@@ -33,7 +33,7 @@
       }
     });
     recorder.addEventListener("stop", () => save(chunks));
-    // For every 200ms the stream data will be stored in a separate chunk.
+
     recorder.start(200);
     count();
   }
@@ -66,6 +66,7 @@
   function stop() {
     recorder.stop();
     recorder = undefined;
+    stream.getTracks().forEach(track => track.stop());
     clearInterval(interval);
   }
 
